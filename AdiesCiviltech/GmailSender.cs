@@ -16,7 +16,7 @@ namespace AdiesCiviltech
     {
         static string[] Scopes = { GmailService.Scope.GmailSend };
         static string ApplicationName = "Gmail API .NET Quickstart";
-        static string credentialsFilePath = @"C:\Users\themis\Downloads\client_secret_216622909239-ier6ipoeoiupoahdvtpugeutlllcntpl.apps.googleusercontent.com (3).json";
+        static string credentialsFilePath = @"C:\Users\themis\Downloads\client_secret_216622909239-ier6ipoeoiupoahdvtpugeutlllcntpl.apps.googleusercontent.com.json";
         static string tokenFilePath = "token.json";
 
         public void SendEmailWithAttachment(string from, string fromName, string to, string subject, string body, string filePath)
@@ -51,7 +51,7 @@ namespace AdiesCiviltech
             textPart.ContentType.Charset = Encoding.UTF8.WebName;
             var multipart = new Multipart("mixed");
             multipart.Add(textPart);
-            multipart.Add(new MimePart("application/pdf") { Content = new MimeContent(File.OpenRead(filePath)), ContentDisposition = new ContentDisposition(ContentDisposition.Attachment), ContentTransferEncoding = ContentEncoding.Base64, FileName = Path.GetFileName(filePath) });
+            multipart.Add(new MimePart("application/docx") { Content = new MimeContent(File.OpenRead(filePath)), ContentDisposition = new ContentDisposition(ContentDisposition.Attachment), ContentTransferEncoding = ContentEncoding.Base64, FileName = Path.GetFileName(filePath) });
             message.Body = multipart;
 
             var builder = new BodyBuilder();                        

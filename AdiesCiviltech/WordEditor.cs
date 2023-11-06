@@ -19,6 +19,10 @@ namespace AdiesCiviltech
 {
     public class WordEditor
     {
+        public string dateFrom;
+        public string dateTo;
+        public string applicationDate;
+        public string numberOfDays;
         public Document EditWord(string filePath)
         {
             Application wordApp = new Application();
@@ -30,16 +34,16 @@ namespace AdiesCiviltech
                 doc.Close(false);
             }
 
-            
 
 
-            //wordApp.Visible = false;
+
+            wordApp.Visible = false;
             Document wordDoc = wordApp.Documents.Open(filePath);
-
+            
             wordApp.Selection.Find.ClearFormatting();
             wordApp.Selection.Find.Replacement.ClearFormatting();
             wordApp.Selection.Find.Text = "{ApplicationDate}";
-            wordApp.Selection.Find.Replacement.Text = "9/2/2023";
+            wordApp.Selection.Find.Replacement.Text = applicationDate;
             wordApp.Selection.Find.Execute(Replace: WdReplace.wdReplaceAll);
 
             wordApp.Selection.Find.Replacement.ClearFormatting();
@@ -50,18 +54,18 @@ namespace AdiesCiviltech
 
             wordApp.Selection.Find.Replacement.ClearFormatting();
             wordApp.Selection.Find.Text = "{From}";
-            wordApp.Selection.Find.Replacement.Text = "10/2/2023";
+            wordApp.Selection.Find.Replacement.Text = dateFrom;
             wordApp.Selection.Find.Execute(Replace: WdReplace.wdReplaceAll);
 
 
             wordApp.Selection.Find.Replacement.ClearFormatting();
             wordApp.Selection.Find.Text = "{To}";
-            wordApp.Selection.Find.Replacement.Text = "12/2/2023";
+            wordApp.Selection.Find.Replacement.Text = dateTo;
             wordApp.Selection.Find.Execute(Replace: WdReplace.wdReplaceAll);
 
             wordApp.Selection.Find.Replacement.ClearFormatting();
             wordApp.Selection.Find.Text = "{NoOfDays}";
-            wordApp.Selection.Find.Replacement.Text = "3";
+            wordApp.Selection.Find.Replacement.Text = numberOfDays;
             wordApp.Selection.Find.Execute(Replace: WdReplace.wdReplaceAll);
 
             var contentControls = wordDoc.ContentControls;
