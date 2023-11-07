@@ -37,24 +37,26 @@ namespace AdiesCiviltech
         private void button1_Click(object sender, EventArgs e)
         {
             WordEditor we = new WordEditor();
-            string filePath = @"C:\Users\themis\source\repos\AdiesCiviltech\ΦΟΡΜΑ ΑΙΤΗΜΑΤΟΣ ΑΔΕΙΑΣ.docx";
-            Document EditWord = we.EditWord(filePath);
+            string filePath = @"C:\Users\themis\source\repos\AdiesCiviltech\ΦΟΡΜΑ ΑΙΤΗΜΑΤΟΣ ΑΔΕΙΑΣ TEMPLATE.docx";
             we.dateFrom = dateFrom;
-            we.dateTo = dateTo;            
+            we.dateTo = dateTo;
             we.applicationDate = lblApplicationDate.Text;
             we.numberOfDays = numberOfDays;
-            //we.applicationDate =;
+            //Document EditWord = we.EditWord(filePath);
+            String newFilePath= we.EditWord(filePath);
+          
             // Replace with your own email address and password
             string from = "themis@civiltech.gr";
             // Replace with the recipient's email address
-            string to = "themhz@gmail.com";
+            string to = "vsahini@civiltech.gr";
             // Replace with the subject and body of the email
             string subject = "Αιτηση αδείας";
             string body = "Αίτηση αδείας";
 
             GmailSender gs = new GmailSender();
-            gs.SendEmailWithAttachment(from, "Ευθύμιος Θεοτοκάτος", to, subject, body, filePath);
-
+            gs.SendEmailWithAttachment(from, "Ευθύμιος Θεοτοκάτος", to, subject, body, newFilePath);
+            lblSend.Text = "Sent";
+            lblSend.ForeColor = System.Drawing.Color.Green;
 
         }
 

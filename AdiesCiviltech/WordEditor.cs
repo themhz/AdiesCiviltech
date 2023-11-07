@@ -23,10 +23,13 @@ namespace AdiesCiviltech
         public string dateTo;
         public string applicationDate;
         public string numberOfDays;
-        public Document EditWord(string filePath)
+        public String EditWord(string filePath)
         {
             Application wordApp = new Application();
-                        
+
+            string newFilePath = $@"C:\Users\themis\source\repos\AdiesCiviltech\ΦΟΡΜΑ_ΑΙΤΗΜΑΤΟΣ_ΑΔΕΙΑΣ_{applicationDate}.docx";
+
+
             wordApp.Visible = false;
 
             foreach (Word.Document doc in wordApp.Documents)
@@ -39,7 +42,24 @@ namespace AdiesCiviltech
 
             wordApp.Visible = false;
             Document wordDoc = wordApp.Documents.Open(filePath);
-            
+
+            try
+            {
+
+                var newDoc = wordApp.Documents.Add();
+                wordDoc.Range().Copy();
+                newDoc.Range().Paste();
+                newDoc.SaveAs2(newFilePath);
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            wordApp.Visible = false;
+            wordDoc = wordApp.Documents.Open(newFilePath);
+
             wordApp.Selection.Find.ClearFormatting();
             wordApp.Selection.Find.Replacement.ClearFormatting();
             wordApp.Selection.Find.Text = "{ApplicationDate}";
@@ -69,7 +89,7 @@ namespace AdiesCiviltech
             wordApp.Selection.Find.Execute(Replace: WdReplace.wdReplaceAll);
 
             var contentControls = wordDoc.ContentControls;
-            
+
 
             //var checkBoxes = wordDoc.ContentControls.OfType<>();
 
@@ -79,20 +99,8 @@ namespace AdiesCiviltech
             //}
 
             //wordDoc.Save();
-            try
-            {
-                                
-                var newDoc = wordApp.Documents.Add();                
-                wordDoc.Range().Copy();                
-                newDoc.Range().Paste();
-                newDoc.SaveAs2(@"C:\Users\themis\source\repos\AdiesCiviltech\ΦΟΡΜΑ_ΑΙΤΗΜΑΤΟΣ_ΑΔΕΙΑΣ_New.docx");
 
-            }
-            catch(Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            
+
 
             //// Save the document to a new file
             //using (WordprocessingDocument newWordDoc = WordprocessingDocument.Create(@"C:\Users\themis\source\repos\AdiesCiviltech\ΦΟΡΜΑ ΑΙΤΗΜΑΤΟΣ ΑΔΕΙΑΣ_New.docx", WordprocessingDocumentType.Document))
@@ -105,7 +113,8 @@ namespace AdiesCiviltech
             wordDoc.Close();
             wordApp.Quit();
 
-            return wordDoc;
+            //return wordDoc;
+            return newFilePath;
         }
     }
 }

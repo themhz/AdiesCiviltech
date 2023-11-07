@@ -38,6 +38,7 @@
             this.lblApplicationDate = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.lblNumberOfDays = new System.Windows.Forms.Label();
+            this.lblSend = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // button1
@@ -125,11 +126,20 @@
             this.lblNumberOfDays.Size = new System.Drawing.Size(0, 16);
             this.lblNumberOfDays.TabIndex = 9;
             // 
+            // lblSend
+            // 
+            this.lblSend.AutoSize = true;
+            this.lblSend.Location = new System.Drawing.Point(239, 353);
+            this.lblSend.Name = "lblSend";
+            this.lblSend.Size = new System.Drawing.Size(0, 16);
+            this.lblSend.TabIndex = 10;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.lblSend);
             this.Controls.Add(this.lblNumberOfDays);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.lblApplicationDate);
@@ -159,6 +169,7 @@
         private System.Windows.Forms.Label lblApplicationDate;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label lblNumberOfDays;
+        private System.Windows.Forms.Label lblSend;
     }
 }
 
